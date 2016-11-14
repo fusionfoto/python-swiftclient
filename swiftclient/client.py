@@ -34,6 +34,12 @@ from swiftclient.exceptions import ClientException
 from swiftclient.utils import (
     iter_wrapper, LengthWrapper, ReadableToIterable, parse_api_response)
 
+# For swift < 1.13.0
+try:
+    from simplejson import loads as json_loads
+except ImportError:
+    from json import loads as json_loads
+
 # Default is 100, increase to 256
 http_client._MAXHEADERS = 256
 
